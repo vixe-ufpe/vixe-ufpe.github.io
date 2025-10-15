@@ -33,6 +33,24 @@
             transition: all 0.3s ease;
         }
 
+        .publication-row {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .publication-thumb {
+            width: 130px;
+            height: 95px;
+            border-radius: 6px;
+            object-fit: cover;
+            display: block;
+            background-color: #eee;
+        }
+
+        .publication-content { min-width: 0; }
+
         .publication-item:hover {
             border-left-color: #1976d2;
             background-color: #f5f5f5;
@@ -208,6 +226,9 @@
                 padding: 1rem;
             }
             
+            .publication-row { grid-template-columns: 100px 1fr; }
+            .publication-thumb { width: 100px; height: 75px; }
+
             .publication-links {
                 flex-direction: column;
             }
@@ -725,13 +746,16 @@ function renderPublications() {
 // Render individual publication
 function renderPublication(pub) {
     let html = `<div class="publication-item">
-        <div class="publication-title">
-            ${pub.pdf ? `<a href="${pub.pdf}" target="_blank">${pub.title}</a>` : pub.title}
-        </div>
-        <div class="publication-authors">${pub.authors.join(', ')}</div>
-        <div class="publication-venue">${pub.venue}</div>
-        <div>
-            <span class="publication-year">${pub.year}</span>`;
+        <div class="publication-row">
+            <img class="publication-thumb" src="${pub.thumbnail || 'home/00477a68b36e957f321711cc13e44054.jpg'}" alt="${pub.title} thumbnail" loading="lazy">
+            <div class="publication-content">
+                <div class="publication-title">
+                    ${pub.pdf ? `<a href="${pub.pdf}" target="_blank">${pub.title}</a>` : pub.title}
+                </div>
+                <div class="publication-authors">${pub.authors.join(', ')}</div>
+                <div class="publication-venue">${pub.venue}</div>
+                <div>
+                    <span class="publication-year">${pub.year}</span>`;
     
     if (pub.awards && pub.awards.length > 0) {
         pub.awards.forEach(award => {
@@ -775,7 +799,10 @@ function renderPublication(pub) {
         html += '</div>';
     }
     
-    html += '</div>';
+    html +=`    </div>
+            </div>
+        </div>
+    </div>`;
     return html;
 }
 
