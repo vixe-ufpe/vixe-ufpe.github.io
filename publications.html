@@ -7,24 +7,224 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="icon" href="e86bb32dee6ded9874c9a6f4e86df6f2.png">
     <meta name="robots" content="noindex">
-    <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,500,700|Source+Code+Pro:400,700&display=swap" rel="stylesheet" nonce="3wX2JP5toBNENMf4a2ggdQ">
+
+    <meta property="og:description" content="VIXElab Publications - Research papers and publications from the Visualization, Interfaces, and emerging eXpEriences Lab at UFPE">
+
+    <meta itemprop="name" content="Publications">
+    <meta itemprop="description" content="VIXElab Publications - Research papers and publications from the Visualization, Interfaces, and emerging eXpEriences Lab at UFPE">
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:300,400,500,700|Source+Code+Pro:400,700&display=swap"
+          rel="stylesheet" nonce="YvKuIGY5Q9rIr0jLpveWig">
     <link href="https://fonts.googleapis.com/css?family=Londrina+Solid:700,400,300&display=swap" rel="stylesheet" nonce="">
     <link href="https://fonts.googleapis.com/css?family=Manrope:700,400,300,600&display=swap" rel="stylesheet" nonce="">
-
     <!-- CSS -->
-    <link rel="stylesheet" href="home_top.css" />
     <link rel="stylesheet" href="home_top_1.css" />
+    <link rel="stylesheet" href="home_top.css" />
     <link rel="stylesheet" href="home.css" />
 
-    <title>VIXElab - People</title>
+    <title>VIXElab - Publications</title>
 
+    <style>
+        .publication-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-left: 4px solid #e0e0e0;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+        }
+
+        .publication-item:hover {
+            border-left-color: #1976d2;
+            background-color: #f5f5f5;
+            transform: translateX(4px);
+        }
+
+        .publication-title {
+            font-family: 'Manrope', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1976d2;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .publication-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .publication-title a:hover {
+            text-decoration: underline;
+        }
+
+        .publication-authors {
+            font-size: 0.95rem;
+            color: #424242;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .publication-venue {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-year {
+            display: inline-block;
+            background-color: #1976d2;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-abstract {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .publication-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .publication-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.4rem 0.8rem;
+            background-color: #1976d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .publication-link:hover {
+            background-color: #1565c0;
+            color: white;
+        }
+
+        .publication-link.secondary {
+            background-color: #757575;
+        }
+
+        .publication-link.secondary:hover {
+            background-color: #616161;
+        }
+
+        .publication-awards {
+            display: inline-block;
+            background-color: #ff9800;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+
+        .publication-keywords {
+            margin-top: 0.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .publication-keyword {
+            background-color: #e3f2fd;
+            color: #1976d2;
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+        }
+
+        .year-section {
+            margin-bottom: 3rem;
+        }
+
+        .year-header {
+            font-family: 'Manrope', Arial, sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: #1976d2;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: #d32f2f;
+            background-color: #ffebee;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        .filter-controls {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: #424242;
+        }
+
+        .filter-select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        @media (max-width: 768px) {
+            .publication-item {
+                padding: 1rem;
+            }
+            
+            .publication-links {
+                flex-direction: column;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body css="yDmH0d" dir="ltr" id="yDmH0d" itemscope itemtype="http://schema.org/WebPage">
 <div jsaction="rcuQ6b:WYd;GvneHb:og1FDd;vbaUQc:uAM5ec;" jscontroller="pc62j" jsmodel="iTeaXe">
     <div jsaction="rcuQ6b:WYd;o6xM5b:Pg9eo;HuL2Hd:mHeCvf;VMhF5:FFYy5e;sk3Qmb:HI1Mdd;JIbuQc:rSzFEd(z2EeY),aSaF6e(ilzYPe);"
          jscontroller="X4BaPc">
         <div jsname="tiN4bf">
-            <style nonce="3wX2JP5toBNENMf4a2ggdQ">.rrJNTc {
+            <style nonce="YvKuIGY5Q9rIr0jLpveWig">.rrJNTc {
                 opacity: 0;
             }
 
@@ -97,9 +297,18 @@
                                         <div class="PsKE7e r8s4j-R6PoUb IKA38e baH5ib oNsfjf">
                                             <div class="I35ICb" jsaction="keydown:mPuKz(QwLHlb); click:vHQTA(QwLHlb);">
                                                 <a class="aJHbb dk90Ob hDrhEe HlqNPb" data-level="1" data-navtype="1"
-                                                   data-page="1sxafhI0NEUR7XdI273lkuOeTLBe8nzF8" data-type="1" data-url="home.html" href="home.html"
-                                                   jsname="QwLHlb" role="link"
+                                                   data-page="1sxafhI0NEUR7XdI273lkuOeTLBe8nzF8" data-type="1" data-url="home.html"
+                                                   href="home.html" jsname="QwLHlb" role="link"
                                                    tabindex="0">Home</a></div>
+                                        </div>
+                                    </li>
+                                    <li data-nav-level="1" jsname="ibnC6b">
+                                        <div class="PsKE7e r8s4j-R6PoUb IKA38e baH5ib oNsfjf">
+                                            <div class="I35ICb" jsaction="keydown:mPuKz(QwLHlb); click:vHQTA(QwLHlb);">
+                                                <a class="aJHbb dk90Ob hDrhEe HlqNPb" data-level="1" data-navtype="1"
+                                                   data-page="1TtDQtzPvcU9SS_pRLBAvYf6AXsaIhQg4" data-type="1" data-url="people.html"
+                                                   href="people.html" jsname="QwLHlb" role="link"
+                                                   tabindex="-1">People</a></div>
                                         </div>
                                     </li>
                                     <li data-nav-level="1" jsname="ibnC6b">
@@ -107,17 +316,7 @@
                                              class="PsKE7e r8s4j-R6PoUb IKA38e baH5ib oNsfjf lhZOrc">
                                             <div class="I35ICb" jsaction="keydown:mPuKz(QwLHlb); click:vHQTA(QwLHlb);">
                                                 <a aria-selected="true" class="aJHbb dk90Ob hDrhEe HlqNPb" data-level="1"
-                                                   data-navtype="1" data-page="1TtDQtzPvcU9SS_pRLBAvYf6AXsaIhQg4" data-type="1"
-                                                   data-url="people.html" href="people.html" jsname="QwLHlb"
-                                                   role="link"
-                                                   tabindex="-1">People</a></div>
-                                        </div>
-                                    </li>
-                                    <li data-nav-level="1" jsname="ibnC6b">
-                                        <div class="PsKE7e r8s4j-R6PoUb IKA38e baH5ib oNsfjf">
-                                            <div class="I35ICb" jsaction="keydown:mPuKz(QwLHlb); click:vHQTA(QwLHlb);">
-                                                <a class="aJHbb dk90Ob hDrhEe HlqNPb" data-level="1" data-navtype="1"
-                                                   data-page="1publications" data-type="1" data-url="publications.html"
+                                                   data-navtype="1" data-page="1publications" data-type="1" data-url="publications.html"
                                                    href="publications.html" jsname="QwLHlb" role="link"
                                                    tabindex="-1">Publications</a></div>
                                         </div>
@@ -142,17 +341,31 @@
                                     </div>
                                     <nav class="plFg0c" data-is-preview="false" id="WDxLfe"
                                          jsaction="rcuQ6b:rcuQ6b;MxH79b:CfS0pe;" jscontroller="HXO1uc" role="navigation"
-                                         style="" tabindex="-1">
+                                          tabindex="-1">
                                         <ul class="K1Ci7d oXBWEc jYxBte" jsname="waIgnc">
                                             <li class="VsJjtf" data-nav-level="1" jsname="ibnC6b">
                                                 <div class="PsKE7e qV4dIc Qrrb5 YSH9J">
                                                     <div class="I35ICb"
                                                          jsaction="click:vHQTA(QwLHlb); keydown:mPuKz(QwLHlb);"><a
                                                             class="aJHbb dk90Ob jgXgSe HlqNPb" data-level="1"
-                                                            data-navtype="1" data-page="1sxafhI0NEUR7XdI273lkuOeTLBe8nzF8" data-type="1"
-                                                            data-url="home.html" href="home.html" jsaction="rcuQ6b:WYd;"
-                                                            jscontroller="yUHiM" jsname="QwLHlb" role="link"
+                                                            data-navtype="1" data-page="1sxafhI0NEUR7XdI273lkuOeTLBe8nzF8"
+                                                            data-type="1" data-url="home.html" href="home.html"
+                                                            jsaction="rcuQ6b:WYd;" jscontroller="yUHiM" jsname="QwLHlb"
+                                                            role="link"
                                                             tabindex="0">Home</a></div>
+                                                </div>
+                                                <div class="rgLkl"></div>
+                                            </li>
+                                            <li class="VsJjtf" data-nav-level="1" jsname="ibnC6b">
+                                                <div class="PsKE7e qV4dIc Qrrb5 YSH9J">
+                                                    <div class="I35ICb"
+                                                         jsaction="click:vHQTA(QwLHlb); keydown:mPuKz(QwLHlb);"><a
+                                                            class="aJHbb dk90Ob jgXgSe HlqNPb" data-level="1"
+                                                            data-navtype="1" data-page="1TtDQtzPvcU9SS_pRLBAvYf6AXsaIhQg4" data-type="1"
+                                                            data-url="people.html" href="people.html" jsaction="rcuQ6b:WYd;"
+                                                            jscontroller="yUHiM" jsname="QwLHlb" role="link"
+                                                            tabindex="-1">People</a>
+                                                    </div>
                                                 </div>
                                                 <div class="rgLkl"></div>
                                             </li>
@@ -161,23 +374,10 @@
                                                     <div class="I35ICb"
                                                          jsaction="click:vHQTA(QwLHlb); keydown:mPuKz(QwLHlb);"><a
                                                             aria-selected="true" class="aJHbb dk90Ob jgXgSe HlqNPb"
-                                                            data-level="1" data-navtype="1" data-page="1TtDQtzPvcU9SS_pRLBAvYf6AXsaIhQg4"
-                                                            data-type="1" data-url="people.html" href="people.html"
+                                                            data-level="1" data-navtype="1" data-page="1publications"
+                                                            data-type="1" data-url="publications.html" href="publications.html"
                                                             jsaction="rcuQ6b:WYd;" jscontroller="yUHiM" jsname="QwLHlb"
                                                             role="link"
-                                                            tabindex="-1">People</a>
-                                                    </div>
-                                                </div>
-                                                <div class="rgLkl"></div>
-                                            </li>
-                                            <li class="VsJjtf" data-nav-level="1" jsname="ibnC6b">
-                                                <div class="PsKE7e qV4dIc Qrrb5 YSH9J">
-                                                    <div class="I35ICb"
-                                                         jsaction="click:vHQTA(QwLHlb); keydown:mPuKz(QwLHlb);"><a
-                                                            class="aJHbb dk90Ob jgXgSe HlqNPb" data-level="1"
-                                                            data-navtype="1" data-page="1publications" data-type="1"
-                                                            data-url="publications.html" href="publications.html" jsaction="rcuQ6b:WYd;"
-                                                            jscontroller="yUHiM" jsname="QwLHlb" role="link"
                                                             tabindex="-1">Publications</a>
                                                     </div>
                                                 </div>
@@ -242,31 +442,31 @@
                                                         </li>
                                                         <li class="ijMPi ZmrVpf" data-nav-level="2" in-more-item
                                                             jsname="ibnC6b">
-                                                            <div aria-current="true"
-                                                                 class="PsKE7e IKA38e oNsfjf lhZOrc">
+                                                            <div class="PsKE7e IKA38e oNsfjf">
                                                                 <div class="I35ICb"
                                                                      jsaction="click:vHQTA(QwLHlb); keydown:mPuKz(QwLHlb);">
-                                                                    <a aria-selected="true" class="aJHbb hDrhEe HlqNPb"
-                                                                       data-in-more-submenu="true" data-level="2"
-                                                                       data-navtype="1" data-page="1TtDQtzPvcU9SS_pRLBAvYf6AXsaIhQg4" data-type="1"
-                                                                       data-url="people.html" href="people.html"
-                                                                       jsaction="rcuQ6b:WYd;" jscontroller="yUHiM"
-                                                                       jsname="QwLHlb" role="link"
+                                                                    <a class="aJHbb hDrhEe HlqNPb" data-in-more-submenu="true"
+                                                                       data-level="2" data-navtype="1"
+                                                                       data-page="1TtDQtzPvcU9SS_pRLBAvYf6AXsaIhQg4" data-type="1" data-url="people.html"
+                                                                       href="people.html" jsaction="rcuQ6b:WYd;"
+                                                                       jscontroller="yUHiM" jsname="QwLHlb"
+                                                                       role="link"
                                                                        tabindex="-1">People</a>
                                                                 </div>
                                                             </div>
                                                         </li>
                                                         <li class="ijMPi ZmrVpf" data-nav-level="2" in-more-item
                                                             jsname="ibnC6b">
-                                                            <div class="PsKE7e IKA38e oNsfjf">
+                                                            <div aria-current="true"
+                                                                 class="PsKE7e IKA38e oNsfjf lhZOrc">
                                                                 <div class="I35ICb"
                                                                      jsaction="click:vHQTA(QwLHlb); keydown:mPuKz(QwLHlb);">
-                                                                    <a class="aJHbb hDrhEe HlqNPb" data-in-more-submenu="true"
-                                                                       data-level="2" data-navtype="1"
-                                                                       data-page="1publications" data-type="1" data-url="publications.html"
-                                                                       href="publications.html" jsaction="rcuQ6b:WYd;"
-                                                                       jscontroller="yUHiM" jsname="QwLHlb"
-                                                                       role="link"
+                                                                    <a aria-selected="true" class="aJHbb hDrhEe HlqNPb"
+                                                                       data-in-more-submenu="true" data-level="2"
+                                                                       data-navtype="1" data-page="1publications" data-type="1"
+                                                                       data-url="publications.html" href="publications.html"
+                                                                       jsaction="rcuQ6b:WYd;" jscontroller="yUHiM"
+                                                                       jsname="QwLHlb" role="link"
                                                                        tabindex="-1">Publications</a>
                                                                 </div>
                                                             </div>
@@ -298,160 +498,79 @@
                         </div>
                     </header>
                     <div class="UtePc RCETm" dir="ltr" jsname="ZBtY8b" tabindex="-1">
-                        <section class="yaqOZd LB7kq cJgDec nyKByd O13XJf" id="h.63cc0647adddd4b_6" style="">
+                        <section class="yaqOZd LB7kq cJgDec nyKByd O13XJf" id="h.INITIAL_GRID.jg0goqg07yk8"
+                                 style="">
                             <div class="Nu95r">
                                 <div class="IFuOkc"
                                      jsname="LQX2Vd"
-                                     style="background-position: center center; background-image: url(people/928d90f94f59f2a8647756b3739486cf.jpg); background-size: cover;"></div>
+                                     style="background-position: center center; background-image: url(home/17108609f4c52a31d2bf208e5cb40361.jpg); background-size: cover;"></div>
                             </div>
                             <div class="mYVXT">
                                 <div class="LS81yb VICjCf j5pSsc db35Fc" tabindex="-1">
-                                    <div class="hJDwNd-AhqUyc-ibL1re Ft7HRd-AhqUyc-ibL1re JNdkSc SQVYQc L6cTce-purZT L6cTce-pSzOP">
-                                        <div class="JNdkSc-SmKAyb LkDMRd">
-                                            <div class="" jsaction="zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;" jscontroller="sGwD4d"
-                                                 jsname="F57UId"></div>
-                                        </div>
-                                    </div>
-                                    <div class="hJDwNd-AhqUyc-OiUrBf Ft7HRd-AhqUyc-OiUrBf purZT-AhqUyc-II5mzb ZcASvf-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c Ktthjf-AhqUyc-qWD73c JNdkSc SQVYQc">
+                                    <div class="hJDwNd-AhqUyc-uQSCkd Ft7HRd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb ZcASvf-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c Ktthjf-AhqUyc-qWD73c JNdkSc SQVYQc">
                                         <div class="JNdkSc-SmKAyb LkDMRd">
                                             <div class="" jsaction="zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;" jscontroller="sGwD4d"
                                                  jsname="F57UId">
                                                 <div class="oKdM2c ZZyype Kzv0Me">
-                                                    <div class="hJDwNd-AhqUyc-OiUrBf Ft7HRd-AhqUyc-OiUrBf jXK9ad D2fZ2 zu5uec OjCsFc dmUFtb wHaque g5GTcb"
-                                                         id="h.63cc0647adddd4b_9">
+                                                    <div class="hJDwNd-AhqUyc-uQSCkd Ft7HRd-AhqUyc-uQSCkd jXK9ad D2fZ2 zu5uec OjCsFc dmUFtb wHaque g5GTcb"
+                                                         id="h.INITIAL_GRID.voqqrhqsd4x">
                                                         <div class="jXK9ad-SmKAyb">
                                                             <div class="tyJCtd mGzaTb Depvyb baZpAe lkHyyc" role="main"
                                                                  tabindex="0"><h1 class="zfr3Q duRjpb CDt4Ke " dir="ltr"
-                                                                                  id="h.s7x2p7nkpta4"
-                                                                                  style="text-align: center;"><span
-                                                                    class="C9DxTc " style="">People</span></h1></div>
+                                                                                  id="h.3q8hfn8r1xjc"
+                                                                                  style="line-height: 1.2; text-align: left;">
+                                                                <span class="FdCeP C9DxTc "
+                                                                      style="color: #f9f9f9; vertical-align: baseline;">Publications</span>
+                                                            </h1>
+                                                                <h3 class="zfr3Q OmQG5e CDt4Ke " dir="ltr"
+                                                                    id="h.c0voz992hi09"
+                                                                    style="background-color: transparent; border-bottom: none; border-left: none; border-right: none; border-top: none; line-height: 1.38; margin-bottom: 8.0pt; margin-top: 0.0pt; padding-bottom: 0.0pt; padding-left: 0.0pt; padding-right: 0.0pt; padding-top: 0.0pt;">
+                                                                    <span class="C9DxTc " style="">Research papers and publications from VIXElab</span>
+                                                                </h3></div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="hJDwNd-AhqUyc-ibL1re Ft7HRd-AhqUyc-ibL1re JNdkSc SQVYQc L6cTce-purZT L6cTce-pSzOP">
-                                        <div class="JNdkSc-SmKAyb LkDMRd">
-                                            <div class="" jsaction="zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;" jscontroller="sGwD4d"
-                                                 jsname="F57UId"></div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </section>
-                        <section class="yaqOZd" id="h.14774ce5aa8fc9df_54">
+                        <section class="yaqOZd" id="h.684f47d33393e097_20">
                             <div class="IFuOkc"></div>
                             <div class="mYVXT">
                                 <div class="LS81yb VICjCf j5pSsc db35Fc" tabindex="-1">
-                                    <div class="hJDwNd-AhqUyc-c5RTEf Ft7HRd-AhqUyc-c5RTEf purZT-AhqUyc-II5mzb ZcASvf-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c Ktthjf-AhqUyc-qWD73c JNdkSc SQVYQc">
+                                    <div class="hJDwNd-AhqUyc-uQSCkd Ft7HRd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb ZcASvf-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c Ktthjf-AhqUyc-qWD73c JNdkSc SQVYQc">
                                         <div class="JNdkSc-SmKAyb LkDMRd">
                                             <div class="" jsaction="zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;" jscontroller="sGwD4d"
                                                  jsname="F57UId">
                                                 <div class="oKdM2c ZZyype Kzv0Me">
-                                                    <div class="hJDwNd-AhqUyc-c5RTEf Ft7HRd-AhqUyc-c5RTEf purZT-AhqUyc-II5mzb ZcASvf-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c Ktthjf-AhqUyc-qWD73c jXK9ad D2fZ2 zu5uec OjCsFc dmUFtb wHaque g5GTcb"
-                                                         id="h.14774ce5aa8fc9df_51">
+                                                    <div class="hJDwNd-AhqUyc-uQSCkd Ft7HRd-AhqUyc-uQSCkd jXK9ad D2fZ2 zu5uec OjCsFc dmUFtb wHaque g5GTcb"
+                                                         id="h.684f47d33393e097_17">
                                                         <div class="jXK9ad-SmKAyb">
                                                             <div class="tyJCtd mGzaTb Depvyb baZpAe">
-                                                                <div class="CobnVe yMxPgf  aP9Z7e"
-                                                                     id="h.9q0ddqe0dj7s"></div>
-                                                                <h2 class="zfr3Q JYVBee CDt4Ke " dir="ltr"
-                                                                    id="h.9q0ddqe0dj7s_l" style=""><span
-                                                                        class="C9DxTc " style="">Permanents</span></h2>
+                                                                <div class="filter-controls">
+                                                                    <div class="filter-group">
+                                                                        <label class="filter-label" for="yearFilter">Filter by Year:</label>
+                                                                        <select id="yearFilter" class="filter-select">
+                                                                            <option value="">All Years</option>
+                                                                        </select>
+                                                                        <label class="filter-label" for="typeFilter">Filter by Type:</label>
+                                                                        <select id="typeFilter" class="filter-select">
+                                                                            <option value="">All Types</option>
+                                                                            <option value="journal">Journal</option>
+                                                                            <option value="conference">Conference</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="publicationsContainer">
+                                                                    <div class="loading">Loading publications...</div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="hJDwNd-AhqUyc-Clt0zb Ft7HRd-AhqUyc-Clt0zb JNdkSc SQVYQc L6cTce-purZT L6cTce-pSzOP">
-                                        <div class="JNdkSc-SmKAyb LkDMRd">
-                                            <div class="" jsaction="zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;" jscontroller="sGwD4d"
-                                                 jsname="F57UId"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="yaqOZd" id="h.3b224f259ac67d7b_33">
-                            <div class="IFuOkc"></div>
-                            <div class="mYVXT">
-                                <div class="LS81yb VICjCf j5pSsc db35Fc" tabindex="-1">
-                                    <div class="hJDwNd-AhqUyc-c5RTEf Ft7HRd-AhqUyc-c5RTEf purZT-AhqUyc-c5RTEf ZcASvf-AhqUyc-c5RTEf pSzOP-AhqUyc-c5RTEf Ktthjf-AhqUyc-c5RTEf JNdkSc SQVYQc yYI8W HQwdzb">
-                                        <div class="JNdkSc-SmKAyb LkDMRd">
-                                            <div class="" jsaction="zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;" jscontroller="sGwD4d"
-                                                 jsname="F57UId">
-                                                <div class="oKdM2c ZZyype Kzv0Me">
-                                                    <div class="hJDwNd-AhqUyc-c5RTEf Ft7HRd-AhqUyc-c5RTEf purZT-AhqUyc-c5RTEf ZcASvf-AhqUyc-c5RTEf pSzOP-AhqUyc-c5RTEf Ktthjf-AhqUyc-c5RTEf jXK9ad D2fZ2 zu5uec OjCsFc dmUFtb"
-                                                         id="h.3b224f259ac67d7b_63">
-                                                        <div class="jXK9ad-SmKAyb">
-                                                            <div class="tyJCtd baZpAe"><a
-                                                                    class="fqo2vd"
-                                                                    href="https://www.google.com/url?q=https%3A%2F%2Fcin.ufpe.br%2F~lamm%2F&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw0Etn08HLuqc3OXoyc0fHol" target="_blank">
-                                                                <div class="t3iYD"><img
-                                                                        class="CENy8b"
-                                                                        src="people/46783b3efb3c990296f1761d38e502da.jpg"
-                                                                        style="width: 100%; margin: -5.8333316661% 0 -5.8333316661% 0%">
-                                                                </div>
-                                                            </a></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="oKdM2c ZZyype">
-                                                    <div class="hJDwNd-AhqUyc-c5RTEf Ft7HRd-AhqUyc-c5RTEf purZT-AhqUyc-c5RTEf ZcASvf-AhqUyc-c5RTEf pSzOP-AhqUyc-c5RTEf Ktthjf-AhqUyc-c5RTEf jXK9ad D2fZ2 zu5uec wHaque g5GTcb"
-                                                         id="h.3b224f259ac67d7b_65">
-                                                        <div class="jXK9ad-SmKAyb">
-                                                            <div class="tyJCtd mGzaTb Depvyb baZpAe"><p class="zfr3Q CDt4Ke "
-                                                                                                        dir="ltr"
-                                                                                                        style="text-align: center;">
-                                                                <span class="C9DxTc " style="">Luiz &quot;Gusto&quot; Morais</span>
-                                                            </p></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="hJDwNd-AhqUyc-c5RTEf Ft7HRd-AhqUyc-c5RTEf purZT-AhqUyc-c5RTEf ZcASvf-AhqUyc-c5RTEf pSzOP-AhqUyc-c5RTEf Ktthjf-AhqUyc-c5RTEf JNdkSc SQVYQc yYI8W HQwdzb">
-                                        <div class="JNdkSc-SmKAyb LkDMRd">
-                                            <div class="" jsaction="zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;" jscontroller="sGwD4d"
-                                                 jsname="F57UId">
-                                                <div class="oKdM2c ZZyype Kzv0Me">
-                                                    <div class="hJDwNd-AhqUyc-c5RTEf Ft7HRd-AhqUyc-c5RTEf purZT-AhqUyc-c5RTEf ZcASvf-AhqUyc-c5RTEf pSzOP-AhqUyc-c5RTEf Ktthjf-AhqUyc-c5RTEf jXK9ad D2fZ2 zu5uec OjCsFc dmUFtb"
-                                                         id="h.3b224f259ac67d7b_55">
-                                                        <div class="jXK9ad-SmKAyb">
-                                                            <div class="tyJCtd baZpAe"><a
-                                                                    class="fqo2vd"
-                                                                    href="https://www.google.com/url?q=https%3A%2F%2Fwww.cin.ufpe.br%2F~nivan%2F&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw0LXLd0socI6Gj5g_ZuDKNi" target="_blank">
-                                                                <div class="t3iYD"><img
-                                                                        class="CENy8b"
-                                                                        src="people/1aef7964378a4e370e29df8f5e67ebe3.jpg"
-                                                                        style="width: 172.000002861%; margin: -3.249735904% 0 -81.5280415% -36.3968267598%">
-                                                                </div>
-                                                            </a></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="oKdM2c ZZyype">
-                                                    <div class="hJDwNd-AhqUyc-c5RTEf Ft7HRd-AhqUyc-c5RTEf purZT-AhqUyc-c5RTEf ZcASvf-AhqUyc-c5RTEf pSzOP-AhqUyc-c5RTEf Ktthjf-AhqUyc-c5RTEf jXK9ad D2fZ2 zu5uec wHaque g5GTcb"
-                                                         id="h.3b224f259ac67d7b_38">
-                                                        <div class="jXK9ad-SmKAyb">
-                                                            <div class="tyJCtd mGzaTb Depvyb baZpAe"><p class="zfr3Q CDt4Ke "
-                                                                                                        dir="ltr"
-                                                                                                        style="text-align: center;">
-                                                                <span class="C9DxTc " style="">Nivan Ferreira</span></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="hJDwNd-AhqUyc-qWD73c Ft7HRd-AhqUyc-qWD73c JNdkSc SQVYQc L6cTce-purZT L6cTce-pSzOP">
-                                        <div class="JNdkSc-SmKAyb LkDMRd">
-                                            <div class="" jsaction="zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;" jscontroller="sGwD4d"
-                                                 jsname="F57UId"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -474,7 +593,7 @@
                                                         <div class="jXK9ad-SmKAyb">
                                                             <div class="tyJCtd OWlOyc baZpAe">
                                                                 <div jsaction="rcuQ6b:rcuQ6b;" jscontroller="VYKRW">
-                                                                    <div class="WIdY2d M1aSXe">
+                                                                    <div class="M1aSXe">
                                                                         <div jsname="WXxXjd"
                                                                              style="padding-top: 3.6697247706%"></div>
                                                                         <div class="YMEQtf">
@@ -499,5 +618,194 @@
     </div>
 </div>
 <div jsaction="rcuQ6b:npT2md" jscontroller="YV8yqd"></div>
+
+<script>
+// Publications data and functionality
+let publicationsData = [];
+let filteredPublications = [];
+
+// Load publications data
+async function loadPublications() {
+    try {
+        const response = await fetch('publications.json');
+        if (!response.ok) {
+            throw new Error('Failed to load publications');
+        }
+        const data = await response.json();
+        publicationsData = data.publications;
+        filteredPublications = [...publicationsData];
+        
+        // Sort by year (newest first)
+        filteredPublications.sort((a, b) => b.year - a.year);
+        
+        populateFilters();
+        renderPublications();
+    } catch (error) {
+        console.error('Error loading publications:', error);
+        document.getElementById('publicationsContainer').innerHTML = 
+            '<div class="error">Error loading publications. Please try again later.</div>';
+    }
+}
+
+// Populate filter dropdowns
+function populateFilters() {
+    const yearFilter = document.getElementById('yearFilter');
+    const typeFilter = document.getElementById('typeFilter');
+    
+    // Get unique years
+    const years = [...new Set(publicationsData.map(pub => pub.year))].sort((a, b) => b - a);
+    
+    // Clear existing options (except "All")
+    yearFilter.innerHTML = '<option value="">All Years</option>';
+    years.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearFilter.appendChild(option);
+    });
+    
+    // Add event listeners
+    yearFilter.addEventListener('change', filterPublications);
+    typeFilter.addEventListener('change', filterPublications);
+}
+
+// Filter publications
+function filterPublications() {
+    const yearFilter = document.getElementById('yearFilter').value;
+    const typeFilter = document.getElementById('typeFilter').value;
+    
+    filteredPublications = publicationsData.filter(pub => {
+        const yearMatch = !yearFilter || pub.year.toString() === yearFilter;
+        const typeMatch = !typeFilter || pub.type === typeFilter;
+        return yearMatch && typeMatch;
+    });
+    
+    // Sort by year (newest first)
+    filteredPublications.sort((a, b) => b.year - a.year);
+    
+    renderPublications();
+}
+
+// Render publications
+function renderPublications() {
+    const container = document.getElementById('publicationsContainer');
+    
+    if (filteredPublications.length === 0) {
+        container.innerHTML = '<div class="loading">No publications found matching the selected filters.</div>';
+        return;
+    }
+    
+    // Group by year
+    const publicationsByYear = {};
+    filteredPublications.forEach(pub => {
+        if (!publicationsByYear[pub.year]) {
+            publicationsByYear[pub.year] = [];
+        }
+        publicationsByYear[pub.year].push(pub);
+    });
+    
+    // Render by year
+    let html = '';
+    Object.keys(publicationsByYear)
+        .sort((a, b) => b - a) // Sort years descending
+        .forEach(year => {
+            html += `<div class="year-section">
+                <h2 class="year-header">${year}</h2>`;
+            
+            publicationsByYear[year].forEach(pub => {
+                html += renderPublication(pub);
+            });
+            
+            html += '</div>';
+        });
+    
+    container.innerHTML = html;
+}
+
+// Render individual publication
+function renderPublication(pub) {
+    let html = `<div class="publication-item">
+        <div class="publication-title">
+            ${pub.pdf ? `<a href="${pub.pdf}" target="_blank">${pub.title}</a>` : pub.title}
+        </div>
+        <div class="publication-authors">${pub.authors.join(', ')}</div>
+        <div class="publication-venue">${pub.venue}</div>
+        <div>
+            <span class="publication-year">${pub.year}</span>`;
+    
+    if (pub.awards && pub.awards.length > 0) {
+        pub.awards.forEach(award => {
+            html += `<span class="publication-awards">${award}</span>`;
+        });
+    }
+    
+    html += `</div>`;
+    
+    if (pub.abstract) {
+        html += `<div class="publication-abstract">${pub.abstract}</div>`;
+    }
+    
+    if (pub.links || pub.pdf) {
+        html += '<div class="publication-links">';
+        
+        if (pub.pdf) {
+            html += `<a href="${pub.pdf}" target="_blank" class="publication-link">
+                <span>📄</span> PDF
+            </a>`;
+        }
+        
+        if (pub.links) {
+            Object.entries(pub.links).forEach(([type, url]) => {
+                const icon = getLinkIcon(type);
+                const label = getLinkLabel(type);
+                html += `<a href="${url}" target="_blank" class="publication-link secondary">
+                    <span>${icon}</span> ${label}
+                </a>`;
+            });
+        }
+        
+        html += '</div>';
+    }
+    
+    if (pub.keywords && pub.keywords.length > 0) {
+        html += '<div class="publication-keywords">';
+        pub.keywords.forEach(keyword => {
+            html += `<span class="publication-keyword">${keyword}</span>`;
+        });
+        html += '</div>';
+    }
+    
+    html += '</div>';
+    return html;
+}
+
+// Get icon for link type
+function getLinkIcon(type) {
+    const icons = {
+        'demo': '🎮',
+        'code': '💻',
+        'video': '🎥',
+        'website': '🌐',
+        'software': '⚙️'
+    };
+    return icons[type] || '🔗';
+}
+
+// Get label for link type
+function getLinkLabel(type) {
+    const labels = {
+        'demo': 'Demo',
+        'code': 'Code',
+        'video': 'Video',
+        'website': 'Website',
+        'software': 'Software'
+    };
+    return labels[type] || type.charAt(0).toUpperCase() + type.slice(1);
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', loadPublications);
+</script>
+
 </body>
 </html>

@@ -1,0 +1,82 @@
+{
+  "publications": [
+    {
+      "id": "2024-01",
+      "title": "Responsible Visualization Design for Environmental Data",
+      "authors": ["Nivan Ferreira", "Luiz Morais", "Maria Silva"],
+      "venue": "IEEE Trans. Visualization & Comp. Graphics (Proc. VIS)",
+      "year": 2024,
+      "type": "journal",
+      "pdf": "papers/2024-responsible-viz.pdf",
+      "abstract": "This paper presents a framework for designing environmentally responsible data visualizations that consider the ecological impact of digital systems while maintaining effective communication of environmental data.",
+      "keywords": ["data visualization", "environmental sustainability", "responsible design"],
+      "awards": ["Best Paper Honorable Mention"]
+    },
+    {
+      "id": "2024-02", 
+      "title": "Urban Data Literacy: Empowering Communities Through Accessible Visualizations",
+      "authors": ["Ana Costa", "Nivan Ferreira", "Carlos Santos"],
+      "venue": "Proc. ACM Human Factors in Computing Systems (CHI)",
+      "year": 2024,
+      "type": "conference",
+      "pdf": "papers/2024-urban-literacy.pdf",
+      "abstract": "We explore how accessible data visualizations can empower urban communities to engage with city data and participate in decision-making processes.",
+      "keywords": ["data literacy", "urban planning", "accessibility", "community engagement"],
+      "links": {
+        "demo": "https://demo.vixelab.com/urban-literacy",
+        "code": "https://github.com/vixelab/urban-literacy"
+      }
+    },
+    {
+      "id": "2023-01",
+      "title": "Tangible Visualizations for Climate Change Communication",
+      "authors": ["Luiz Morais", "Patricia Lima", "Nivan Ferreira"],
+      "venue": "Proc. IEEE VIS Short Papers",
+      "year": 2023,
+      "type": "conference",
+      "pdf": "papers/2023-tangible-climate.pdf",
+      "abstract": "This work investigates how tangible, off-screen visualizations can effectively communicate climate change data using sustainable materials and interactive elements.",
+      "keywords": ["tangible interfaces", "climate change", "sustainable materials", "data communication"],
+      "links": {
+        "video": "https://youtube.com/watch?v=tangible-climate-demo"
+      }
+    },
+    {
+      "id": "2023-02",
+      "title": "Bridging Global South and North: Collaborative Visualization Research",
+      "authors": ["Nivan Ferreira", "Jeffrey Heer", "Maria Silva", "John Smith"],
+      "venue": "IEEE Computer Graphics and Applications",
+      "year": 2023,
+      "type": "journal",
+      "pdf": "papers/2023-global-collaboration.pdf",
+      "abstract": "We present insights from international collaboration in visualization research, highlighting the importance of diverse perspectives and equitable partnerships.",
+      "keywords": ["international collaboration", "research equity", "global south", "visualization research"]
+    },
+    {
+      "id": "2022-01",
+      "title": "Data Stories from the Amazon: Visualizing Environmental Justice",
+      "authors": ["Carlos Santos", "Ana Costa", "Nivan Ferreira"],
+      "venue": "Proc. IEEE Information Visualization (InfoVis)",
+      "year": 2022,
+      "type": "conference", 
+      "pdf": "papers/2022-amazon-stories.pdf",
+      "abstract": "This paper presents a case study of using data visualization to tell stories about environmental justice in the Amazon region, combining scientific data with community narratives.",
+      "keywords": ["environmental justice", "data storytelling", "Amazon", "community narratives"],
+      "links": {
+        "website": "https://amazon-stories.vixelab.com"
+      }
+    },
+    {
+      "id": "2022-02",
+      "title": "Accessible Dashboards for Public Health Data",
+      "authors": ["Patricia Lima", "Luiz Morais", "Maria Silva"],
+      "venue": "ACM Trans. on Computer-Human Interaction",
+      "year": 2022,
+      "type": "journal",
+      "pdf": "papers/2022-health-dashboards.pdf",
+      "abstract": "We design and evaluate accessible dashboard interfaces for public health data, ensuring that critical health information is available to diverse populations.",
+      "keywords": ["public health", "accessibility", "dashboards", "health data visualization"]
+    }
+  ]
+}
+
