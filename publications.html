@@ -805,7 +805,7 @@
 // Set GOOGLE_SHEET_ID to your full published CSV URL or sheet ID
 // Option 2: Use Google Sheets API v4 (requires API key, but no OAuth)
 // Set GOOGLE_SHEET_ID and GOOGLE_API_KEY
-const GOOGLE_SHEET_ID = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRLP43ZpFZ5Qq6LfXhVz7_-CF4SqH0u-7dWeLW6CN8R9ooOz33ZpmNTuFPpTrRzZHaAYF51DtUpKpeM/pub?gid=1014482446&single=true&output=csv'; // Full published CSV URL or sheet ID
+const GOOGLE_SHEET_ID = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRLP43ZpFZ5Qq6LfXhVz7_-CF4SqH0u-7dWeLW6CN8R9ooOz33ZpmNTuFPpTrRzZHaAYF51DtUpKpeM/pub?output=csv'; // Full published CSV URL or sheet ID
 const GOOGLE_API_KEY = null; // Optional: Only needed for Method 2 (API v4)
 const USE_GOOGLE_SHEETS = true; // Set to true to load from Google Sheets
 
@@ -844,7 +844,38 @@ function rowToPublication(row, headers) {
     pub.type = (rowData.type || '').trim().toLowerCase();
     
     // Optional fields
-    if (rowData.thumbnail) pub.thumbnail = rowData.thumbnail.trim();
+    // Handle thumbnail - extract URL from IMAGE() formula or use direct URL
+
+    if (rowData.thumbnail || rowData.thumbnail_link) {
+        
+        let thumbnail = rowData.thumbnail || rowData.thumbnail_link
+        thumbnail = thumbnail.trim();
+        // Extract URL from IMAGE() formula if present
+        // Format: =IMAGE("url") or =IMAGE(url)
+        const imageFormulaMatch = thumbnail.match(/^=IMAGE\(["']?([^"')]+)["']?\)/i);
+        if (imageFormulaMatch) {
+            thumbnail = imageFormulaMatch[1];
+        }
+        // Remove any remaining quotes
+        thumbnail = thumbnail.replace(/^["']|["']$/g, '');
+        
+        // Convert Google Drive shareable link to direct image URL
+        // Format: https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+        // Or: https://drive.google.com/open?id=FILE_ID
+        // Also handles: https://drive.google.com/file/d/FILE_ID/view
+        const driveMatch = thumbnail.match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([a-zA-Z0-9_-]+)/);
+        if (driveMatch) {
+            const fileId = driveMatch[1];
+            // Use thumbnail format for better performance and reliability
+            // This format works better for images and is more reliable
+            thumbnail = `https://drive.google.com/thumbnail?id=${fileId}&sz=w130-h95?authuser=0`;
+            console.log(`Converted Google Drive link: ${rowData.thumbnail.substring(0, 60)}... → ${thumbnail}`);
+        }
+        
+        if (thumbnail) {
+            pub.thumbnail = thumbnail;
+        }
+    }
     if (rowData.pdf) pub.pdf = rowData.pdf.trim();
     if (rowData.abstract) pub.abstract = rowData.abstract.trim();
     
@@ -922,6 +953,7 @@ async function loadFromGoogleSheetsJSONFeed(sheetIdOrUrl) {
         if (!response.ok) throw new Error('Failed to fetch sheet');
         
         const csvText = await response.text();
+
         const lines = csvText.split('\n').filter(line => line.trim());
         
         if (lines.length < 2) throw new Error('Sheet has no data');
@@ -1123,9 +1155,21 @@ function renderPublications() {
 
 // Render individual publication
 function renderPublication(pub) {
+    // Handle image source - escape for HTML and add error handling
+    const imageSrc = pub.thumbnail || 'home/00477a68b36e957f321711cc13e44054.jpg';
+    const fallbackImage = 'home/00477a68b36e957f321711cc13e44054.jpg';
+    
+    // Debug logging for Google Drive images
+    if (pub.thumbnail && pub.thumbnail.includes('drive.google.com')) {
+        console.log(`Rendering Google Drive image for "${pub.title.substring(0, 40)}...": ${pub.thumbnail}`);
+    }
+    
     let html = `<div class="publication-item">
         <div class="publication-row">
-            <img class="publication-thumb" src="${pub.thumbnail || 'home/00477a68b36e957f321711cc13e44054.jpg'}" alt="${pub.title} thumbnail" loading="lazy">
+            <img class="publication-thumb" 
+                 src="${imageSrc}" 
+                 alt="${pub.title} thumbnail" 
+                 onerror="console.error('Image failed to load:', '${imageSrc}'); this.src='${fallbackImage}'; this.onerror=null;">
             <div class="publication-content">
                 <div class="publication-title">
                     ${pub.pdf ? `<a href="${pub.pdf}" target="_blank">${pub.title}</a>` : pub.title}
