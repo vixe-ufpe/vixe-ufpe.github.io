@@ -3287,7 +3287,7 @@ html[dir="rtl"] .sm8sCf {
 }
 
 .PsKE7e, .I35ICb > a {
-    color: inherit;
+    color: white;
     font-size: inherit;
     font-style: inherit;
     font-weight: inherit
@@ -3451,7 +3451,7 @@ html[dir="rtl"] .sm8sCf {
     -webkit-transition-delay: .125s;
     transition-delay: .125s;
     left: -100%;
-    padding-top: 56px
+    padding-top: 10px;
 }
 
 .JzO0Vc.jsnVQ {
@@ -28641,7 +28641,7 @@ input {
 }
 
 .XMyrgf {
-    display: none
+    /* display: none */
 }
 
 .plFg0c {

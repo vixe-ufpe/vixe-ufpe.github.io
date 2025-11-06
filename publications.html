@@ -477,7 +477,7 @@
                                                 <a class="aJHbb dk90Ob hDrhEe HlqNPb" data-level="1" data-navtype="1"
                                                    data-page="1sxafhI0NEUR7XdI273lkuOeTLBe8nzF8" data-type="1" data-url="home.html"
                                                    href="home.html" jsname="QwLHlb" role="link"
-                                                   tabindex="0">Home</a></div>
+                                                   tabindex="-1">Home</a></div>
                                         </div>
                                     </li>
                                     <li data-nav-level="1" jsname="ibnC6b">
@@ -496,7 +496,7 @@
                                                 <a aria-selected="true" class="aJHbb dk90Ob hDrhEe HlqNPb" data-level="1"
                                                    data-navtype="1" data-page="1publications" data-type="1" data-url="publications.html"
                                                    href="publications.html" jsname="QwLHlb" role="link"
-                                                   tabindex="-1">Publications</a></div>
+                                                   tabindex="0">Publications</a></div>
                                         </div>
                                     </li>
                                     <li data-nav-level="1" jsname="ibnC6b">
@@ -1053,6 +1053,8 @@ async function loadPublications() {
                 const data = await response.json();
                 publications = data.publications;
             }
+
+            //  sync json with sheet data            
         } else {
             // Load from JSON file
             const response = await fetch('publications/publications.json');
@@ -1254,6 +1256,65 @@ function getLinkLabel(type) {
 
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', loadPublications);
+</script>
+<script>
+// Mobile menu toggle functionality
+(function() {
+    const menuButton = document.getElementById('s9iPrd');
+    const menu = document.getElementById('yuynLe');
+    const backdrop = document.querySelector('.TxnWlb[jsname="BDdyze"]');
+    
+    if (menuButton && menu) {
+        // Toggle menu function
+        function toggleMenu() {
+            const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+            menuButton.setAttribute('aria-expanded', !isExpanded);
+            if (isExpanded) {
+                // menu.classList.remove('mobile-menu-visible');
+                menu.classList.remove('jsnVQ');
+                // menu.classList.add('mobile-menu-hidden');
+                if (backdrop) {
+                    // backdrop.classList.remove('mobile-backdrop-visible');
+                    // backdrop.classList.add('mobile-backdrop-hidden');
+                }
+            } else {
+                // menu.classList.remove('mobile-menu-hidden');
+                // menu.classList.add('mobile-menu-visible');
+                menu.classList.add('jsnVQ');
+                if (backdrop) {
+                    // backdrop.classList.remove('mobile-backdrop-hidden');
+                    // backdrop.classList.add('mobile-backdrop-visible');
+                }
+            }
+        }
+        
+        // Open menu on button click
+        menuButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+        });
+        
+        // Close menu on backdrop click
+        if (backdrop) {
+            backdrop.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMenu();
+            });
+        }
+        
+        // Close menu when clicking on a menu link
+        const menuLinks = menu.querySelectorAll('a[href]');
+        menuLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                setTimeout(function() {
+                    toggleMenu();
+                }, 100);
+            });
+        });
+    }
+})();
 </script>
 
 </body>
