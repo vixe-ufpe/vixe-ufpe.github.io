@@ -578,21 +578,9 @@
             const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
             menuButton.setAttribute('aria-expanded', !isExpanded);
             if (isExpanded) {
-                // menu.classList.remove('mobile-menu-visible');
                 menu.classList.remove('jsnVQ');
-                // menu.classList.add('mobile-menu-hidden');
-                if (backdrop) {
-                    // backdrop.classList.remove('mobile-backdrop-visible');
-                    // backdrop.classList.add('mobile-backdrop-hidden');
-                }
             } else {
-                // menu.classList.remove('mobile-menu-hidden');
-                // menu.classList.add('mobile-menu-visible');
                 menu.classList.add('jsnVQ');
-                if (backdrop) {
-                    // backdrop.classList.remove('mobile-backdrop-hidden');
-                    // backdrop.classList.add('mobile-backdrop-visible');
-                }
             }
         }
         
